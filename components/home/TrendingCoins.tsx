@@ -1,5 +1,6 @@
 import { fetcher } from "@/lib/coingecko.actions";
 import { cn, formatCurrency } from "@/lib/utils";
+import { DataTableColumn, TrendingCoin } from "@/type";
 import { TrendingDown, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +11,7 @@ const columns: DataTableColumn<TrendingCoin>[] = [
 	{
 		header: "Name",
 		cellClassName: "name-cell",
-		cell: (coin) => {
+		cell: (coin: TrendingCoin) => {
 			const item = coin.item;
 			return (
 				<Link href={`/coins/${item.id}`} className="flex items-center gap-2">
@@ -23,7 +24,7 @@ const columns: DataTableColumn<TrendingCoin>[] = [
 	{
 		header: "24h Change",
 		cellClassName: "price-change-cell",
-		cell: (coin) => {
+		cell: (coin: TrendingCoin) => {
 			const item = coin.item;
 			const isTrendingUp = item.data.price_change_percentage_24h.usd > 0;
 			return (
@@ -46,7 +47,7 @@ const columns: DataTableColumn<TrendingCoin>[] = [
 	{
 		header: "Price",
 		cellClassName: "price-cell",
-		cell: (coin) => formatCurrency(coin.item.data.price),
+		cell: (coin: TrendingCoin) => formatCurrency(coin.item.data.price),
 	},
 ];
 const TrendingCoins = async () => {
@@ -68,7 +69,7 @@ const TrendingCoins = async () => {
 			<DataTable
 				columns={columns}
 				data={trendingCoins.coins.slice(0, 6) || []}
-				rowKey={(coin) => coin.item.id}
+				rowKey={(coin: TrendingCoin) => coin.item.id}
 				tableClassName="trending-coins-table"
 				headerCellClassName="py-3!"
 				bodyCellClassName="py-2!"

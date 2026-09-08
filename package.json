@@ -13,6 +13,7 @@
     "class-variance-authority": "^0.7.1",
     "cn": "^0.2.5",
     "geist": "^1.7.2",
+    "lightweight-charts": "^5.2.1",
     "lucide-react": "^1.41.0",
     "next": "16.3.4",
     "query-string": "^9.5.1",

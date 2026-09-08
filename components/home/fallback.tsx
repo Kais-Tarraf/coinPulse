@@ -59,7 +59,7 @@ export const TrendingCoinsFallback = () => {
 			<DataTable
 				columns={columns}
 				data={data}
-				rowKey={(_, index) => index}
+ 			rowKey={(_: any, index: number) => index}
 				tableClassName="trending-coins-table"
 				bodyCellClassName="change-cell"
 			/>

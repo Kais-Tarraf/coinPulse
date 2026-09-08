@@ -1,11 +1,19 @@
-type OHLCData = [number, number, number, number, number];
+export type OHLCData = [number, number, number, number, number];
+export type Period =
+	| "daily"
+	| "weekly"
+	| "monthly"
+	| "3months"
+	| "6months"
+	| "yearly"
+	| "max";
 
-interface NextPageProps {
+export interface NextPageProps {
 	params: Promise<{ [key: string]: string }>;
 	searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-interface CandlestickChartProps {
+export interface CandlestickChartProps {
 	data?: OHLCData[];
 	liveOhlcv?: OHLCData | null;
 	coinId: string;
@@ -13,17 +21,17 @@ interface CandlestickChartProps {
 	children?: React.ReactNode;
 	mode?: "historical" | "live";
 	initialPeriod?: Period;
-	liveInterval: "1s" | "1m";
-	setLiveInterval: (interval: "1s" | "1m") => void;
+	liveInterval?: "1s" | "1m";
+	setLiveInterval?: (interval: "1s" | "1m") => void;
 }
 
-interface ConverterProps {
+export interface ConverterProps {
 	symbol: string;
 	icon: string;
 	priceList: Record<string, number>;
 }
 
-interface Ticker {
+export interface Ticker {
 	market: {
 		name: string;
 	};
@@ -36,16 +44,7 @@ interface Ticker {
 	trade_url: string;
 }
 
-type Period =
-	| "daily"
-	| "weekly"
-	| "monthly"
-	| "3months"
-	| "6months"
-	| "yearly"
-	| "max";
-
-interface CoinMarketData {
+export interface CoinMarketData {
 	id: string;
 	symbol: string;
 	name: string;
@@ -73,7 +72,7 @@ interface CoinMarketData {
 	last_updated: string;
 }
 
-interface TrendingCoin {
+export interface TrendingCoin {
 	item: {
 		id: string;
 		name: string;
@@ -90,7 +89,7 @@ interface TrendingCoin {
 	};
 }
 
-interface SearchCoin {
+export interface SearchCoin {
 	id: string;
 	name: string;
 	symbol: string;
@@ -104,7 +103,7 @@ interface SearchCoin {
 }
 
 // Chart Section Props (used in ChartSection.tsx)
-interface ChartSectionProps {
+export interface ChartSectionProps {
 	coinData: {
 		image: { large: string };
 		name: string;
@@ -117,7 +116,7 @@ interface ChartSectionProps {
 	coinId: string;
 }
 
-interface TopGainersLosers {
+export interface TopGainersLosers {
 	id: string;
 	name: string;
 	symbol: string;
@@ -126,7 +125,7 @@ interface TopGainersLosers {
 	priceChangePercentage24h: number;
 }
 
-interface TopGainersLosersResponse {
+export interface TopGainersLosersResponse {
 	id: string;
 	name: string;
 	symbol: string;
@@ -137,11 +136,11 @@ interface TopGainersLosersResponse {
 	market_cap_rank: number;
 }
 
-interface PriceData {
+export interface PriceData {
 	usd: number;
 }
 
-interface Trade {
+export interface Trade {
 	price?: number;
 	timestamp?: number;
 	type?: string;
@@ -149,7 +148,7 @@ interface Trade {
 	value?: number;
 }
 
-interface ExtendedPriceData {
+export interface ExtendedPriceData {
 	usd: number;
 	coin?: string;
 	price?: number;
@@ -159,7 +158,7 @@ interface ExtendedPriceData {
 	timestamp?: number;
 }
 
-interface WebSocketMessage {
+export interface WebSocketMessage {
 	type?: string;
 	c?: string;
 	ch?: string;
@@ -180,7 +179,7 @@ interface WebSocketMessage {
 	identifier?: string;
 }
 
-interface CoinDetailsData {
+export interface CoinDetailsData {
 	id: string;
 	name: string;
 	symbol: string;
@@ -229,7 +228,7 @@ interface CoinDetailsData {
 	tickers: Ticker[];
 }
 
-interface LiveDataProps {
+export interface LiveDataProps {
 	coinId: string;
 	poolId: string;
 	coin: CoinDetailsData;
@@ -237,7 +236,7 @@ interface LiveDataProps {
 	children?: React.ReactNode;
 }
 
-interface LiveCoinHeaderProps {
+export interface LiveCoinHeaderProps {
 	name: string;
 	image: string;
 	livePrice?: number;
@@ -246,7 +245,7 @@ interface LiveCoinHeaderProps {
 	priceChange24h: number;
 }
 
-interface Category {
+export interface Category {
 	name: string;
 	top_3_coins: string[];
 	market_cap_change_24h: number;
@@ -254,27 +253,27 @@ interface Category {
 	volume_24h: number;
 }
 
-interface UseCoinGeckoWebSocketProps {
+export interface UseCoinGeckoWebSocketProps {
 	coinId: string;
 	poolId: string;
 	liveInterval?: "1s" | "1m";
 }
 
-interface UseCoinGeckoWebSocketReturn {
+export interface UseCoinGeckoWebSocketReturn {
 	price: ExtendedPriceData | null;
 	trades: Trade[];
 	ohlcv: OHLCData | null;
 	isConnected: boolean;
 }
 
-interface DataTableColumn<T> {
+export interface DataTableColumn<T> {
 	header: React.ReactNode;
 	cell: (row: T, index: number) => React.ReactNode;
 	headClassName?: string;
 	cellClassName?: string;
 }
 
-interface DataTableProps<T> {
+export interface DataTableProps<T> {
 	columns: DataTableColumn<T>[];
 	data: T[];
 	rowKey: (row: T, index: number) => React.Key;
@@ -286,38 +285,38 @@ interface DataTableProps<T> {
 	bodyCellClassName?: string;
 }
 
-type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
+export type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
 
-type PaginationLinkProps = {
+export type PaginationLinkProps = {
 	isActive?: boolean;
 	size?: ButtonSize;
 } & React.ComponentProps<"a">;
 
-interface Pagination {
+export interface Pagination {
 	currentPage: number;
 	totalPages: number;
 	hasMorePages: boolean;
 }
 
-interface HeaderProps {
+export interface HeaderProps {
 	trendingCoins: TrendingCoin[];
 }
 
-type SearchItemCoin = SearchCoin | TrendingCoin["item"];
+export type SearchItemCoin = SearchCoin | TrendingCoin["item"];
 
-interface SearchItemProps {
+export interface SearchItemProps {
 	coin: SearchItemCoin;
 	onSelect: (coinId: string) => void;
 	isActiveName: boolean;
 }
 
-interface CoinGeckoErrorBody {
+export interface CoinGeckoErrorBody {
 	error?: string;
 }
 
-type QueryParams = Record<string, string | number | boolean | undefined>;
+export type QueryParams = Record<string, string | number | boolean | undefined>;
 
-interface PoolData {
+export interface PoolData {
 	id: string;
 	address: string;
 	name: string;
