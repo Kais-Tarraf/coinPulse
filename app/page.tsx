@@ -1,6 +1,8 @@
+import Categories from "@/components/home/Categories";
 import CoinOverview from "@/components/home/CoinOverview";
 import {
 	CoinOverviewFallback,
+	TopCategoriesFallback,
 	TrendingCoinsFallback,
 } from "@/components/home/fallback";
 import TrendingCoins from "@/components/home/TrendingCoins";
@@ -12,7 +14,6 @@ import { Suspense } from "react";
 // table layout. update page.tsx to use these components
 // as suspense fallbacks.
 //=======================================================
-
 
 // Prompt for dummy Trending Coins:
 // Review app/page.tsx and add a local dummy TrendingCoin[]
@@ -66,7 +67,9 @@ const page = async () => {
 				</Suspense>
 			</section>
 			<section className="w-full mt-7 space-y-4">
-				<p>Categories</p>
+				<Suspense fallback={<TopCategoriesFallback />}>
+					<Categories />
+				</Suspense>
 			</section>
 		</main>
 	);
