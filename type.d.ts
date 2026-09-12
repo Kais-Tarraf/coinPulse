@@ -233,6 +233,8 @@ export interface LiveDataProps {
 	poolId: string;
 	coin: CoinDetailsData;
 	coinOHLCData?: OHLCData[];
+	network: string | null;
+	pool: PoolData;
 	children?: React.ReactNode;
 }
 
@@ -285,7 +287,13 @@ export interface DataTableProps<T> {
 	bodyCellClassName?: string;
 }
 
-export type ButtonSize = "default" | "sm" | "lg" | "icon" | "icon-sm" | "icon-lg";
+export type ButtonSize =
+	| "default"
+	| "sm"
+	| "lg"
+	| "icon"
+	| "icon-sm"
+	| "icon-lg";
 
 export type PaginationLinkProps = {
 	isActive?: boolean;
