@@ -1,9 +1,10 @@
-import { DataTableColumn, LiveDataProps, Trade } from "@/type";
+import { CoinDetailsData, DataTableColumn, LiveDataProps, Trade } from "@/type";
 import CandlestickChart from "./CandlestickChart";
 import { Separator } from "./ui/separator";
 import { fetcher } from "@/lib/coingecko.actions";
 import { formatCurrency, timeAgo } from "@/lib/utils";
 import DataTable from "./DataTable";
+import CoinHeader from "./CoinHeader";
 
 const LiveDataWrapper = async ({
 	children,
@@ -77,7 +78,18 @@ const LiveDataWrapper = async ({
 	];
 	return (
 		<section id="live-data-wrapper">
-			<p>Coin Header</p>
+			<CoinHeader
+				name={coin.name}
+				image={coin.image.large}
+				livePrice={coin.market_data.current_price.usd}
+				livePriceChangePercentage24h={
+					coin.market_data.price_change_percentage_24h_in_currency.usd
+				}
+				priceChangePercentage30d={
+					coin.market_data.price_change_percentage_30d_in_currency.usd
+				}
+				priceChange24h={coin.market_data.price_change_24h_in_currency.usd}
+			/>
 			<Separator className="divider" />
 			<div className="trend">
 				<CandlestickChart coinId={coinId} data={coinOHLCData}>
