@@ -3,8 +3,10 @@ import { cn } from "cn";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { TrendingCoin } from "@/type";
+import { SearchModal } from "./SearchModal";
 
-const Header = () => {
+const Header = ({ trendingCoins }: { trendingCoins: TrendingCoin[] }) => {
 	const pathname = usePathname();
 	return (
 		<header>
@@ -22,7 +24,7 @@ const Header = () => {
 					>
 						Home
 					</Link>
-					<p>Search Model</p>
+					<SearchModal initialTrendingCoins={trendingCoins} />
 					<Link
 						className={cn("nav-link", {
 							"is-active": pathname === "/coins",
